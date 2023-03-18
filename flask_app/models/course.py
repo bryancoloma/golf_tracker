@@ -13,7 +13,7 @@ class Course:
         self.notes = data['notes']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.golfer_id = data['golfer_id']
+        self.user_id = data['user_id']
 
 
     @classmethod
@@ -71,8 +71,8 @@ class Course:
     @classmethod
     def save(cls, form_data):
         query = """
-                INSERT INTO courses (title,description,price,user_id)
-                VALUES (%(title)s,%(description)s,%(price)s,%(user_id)s);
+                INSERT INTO courses (score,golf_course,notes,user_id)
+                VALUES (%(score)s,%(golf_course)s,%(notes)s,%(user_id)s);
                 """
         return connectToMySQL(db).query_db(query,form_data)
     
@@ -81,9 +81,9 @@ class Course:
         query = """
                 UPDATE courses
                 SET 
-                title = %(title)s,
-                description = %(description)s,
-                price = %(price)s
+                score = %(score)s,
+                golf_course = %(golf_course)s,
+                notes = %(notes)s
                 WHERE id = %(id)s;
                 """
         return connectToMySQL(db).query_db(query,form_data)
@@ -100,13 +100,13 @@ class Course:
     def validate_coures(form_data):
         is_valid = True
 
-        if len(form_data['title']) < 2:
-            flash("Title should be at least 2 characters long.")
+        if len(form_data['score']) < 2:
+            flash("score should be at least 2 characters long.")
             is_valid = False
-        if len(form_data['description']) < 10:
-            flash("Description should be at least 10 characters long.")
+        if len(form_data['golf_course']) < 10:
+            flash("Golf Course name should be at least 10 characters long.")
             is_valid = False
-        if len(form_data['price']) < 1:
-            flash("Price should be greater than 0.")
+        if len(form_data['notes']) < 1:
+            flash("Notes should be greater than 0.")
             is_valid = False
         return is_valid
