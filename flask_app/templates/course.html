@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We' crossorigin='anonymous'>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js' integrity='sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj' crossorigin='anonymous'></script>
+    <link rel='stylesheet' href='{{ url_for('static', filename='/css/style.css') }}'>
+    <title>Add Course Record</title>
+</head>
+<body>
+    <div class="container row justify-content-center mx-auto mt-2">
+        <div class="row">
+            <h1 class="p-0 col-6">Add a Course Record</h1>
+            <a href="/dashboard" class="btn btn-secondary offset-2 col-2" style="height: 70%;">Dashboard</a>
+            <a href="/user/logout" class="btn btn-secondary offset-1 col-1" style="height: 70%;">Logout</a>
+        </div>
+
+
+        <div class="row border border-dark border-4 rounded rounded-3 p-3 fs-4">
+
+
+            <form action="/course/new/process" method="post" class="card col-12 mx-auto bg-secondary text-white p-3">
+                <div class="row">
+                    <div class="col-4 offset-1">
+                        <div class="form-group mb-3">
+                            <label for="score" class="form-label">Score:</label>
+                            <input type="number" name="score" id="score" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="golf_course" class="form-label">Golf Course:</label>
+                            <input name="golf_course" id="golf_course" class="form-control"></input>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="notes" class="form-label">Notes:</label>
+                            <textarea type="text" name="notes" id="notes" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success mt-2 border border-1">Submit</button>
+            </form>
+            
+
+            {% for course in courses %}
+
+            <div class="row mb-3">
+                <p class="col-4">Filling:</p>
+                <p class="col-8">{{course.description}}</p>
+            </div>
+
+            <div class="row mb-3">
+                <p class="col-4">Crust:</p>
+                <p class="col-8">{{course.price}}</p>
+            </div>
+
+            <a href=""></a>
+
+            {% endfor %}
+
+        </div>
+    </div>
+    
+</body>
+</html>
