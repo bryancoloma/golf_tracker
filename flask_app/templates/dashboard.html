@@ -27,7 +27,7 @@
                 <tbody>
                     {% for items in course %}
                         <tr>
-                            <td><a href="/courses/{{items.id}}">{{items.title}}</a></td>
+                            <td><a href="/courses/{{items.id}}">{{items.course}}</a></td>
                             <td>by {{items.creator.first_name}} {{items.creator.last_name}}</td>
                             <td>
                                 {% if session['user_id'] == items.creator.id %}
